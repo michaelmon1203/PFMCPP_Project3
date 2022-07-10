@@ -171,7 +171,7 @@ You will define these 5 'property' UDTs in Part 1d.
 
  /*
 Part 1c example:
-    Cell Phone
+    Cell Phone  
 
     A Cell Phone is built using the following 5 UDTs:
         Display
@@ -179,7 +179,7 @@ Part 1c example:
         CPU
         Radio
         Applications
-
+ 
     A Cell Phone has 3 things it can do:
         make a call
         send a text
@@ -491,7 +491,7 @@ Thing 10) Electric Guitar
 
  send me a DM to review your pull request when the project is ready for review.
 
- Wait for my code review.
+ Wait for my code review. Replit can't sync up my branch now!
  */
 
 #include <iostream>
