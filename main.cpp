@@ -53,51 +53,51 @@ Sub Object 1: Steering Wheel
     Name 4 things you'll find on the:    Steering Wheel
         1) paddle shifters
         2) 'cruise control' controls
-        3) 
-        4) 
+        3) speaker volume controls
+        4) horn button
     Name 2 things you can do with the:   Steering Wheel
         1) adjust cruise control settings.
-        2)
+        2) push horn button
         
 Sub Object 2: Instrument Cluster
     Name 4 things you'll find on the:   Instrument Cluster
-        1)
-        2)
-        3)
-        4)
+        1) speed dashboard
+        2) fuel gauge dashboard
+        3) tachometer dashboard
+        4) mile count dashboard
     Name 3 things you can do with the:   Instrument Cluster
-        1)
-        2)
-        3)
+        1) check speed dashboard
+        2) check fuel level dashboard
+        3) reset mile cout dashboard
     
 Sub Object 3: Environment Controls
     Name 3 things you'll find on the:    Environment Controls
-        1)
-        2)
-        3)
+        1) A/C switch
+        2) fan speed control
+        3) defrost control
     Name 3 things you can do with the:   Environment Controls
-        1)
-        2)
-        3)
+        1) turn up the fan speed
+        2) open defrost
+        3) turn on A/C switch
 
 Sub Object 4: Infotainment System
     Name 3 things you'll find on the:    Infotainment System
-        1)
-        2)
-        3)
+        1) play button
+        2) volume up button
+        3) mute button
     Name 3 things you can do with the:   Infotainment System
-        1)
-        2)
-        3)
+        1) press play button
+        2) turn up media volume
+        3) mute the audio
 
 Sub Object 5: Seat 
     Name 3 things you'll find on the:    Seat
-        1)
-        2)
-        3)
+        1) tilting angle adjustment wheel
+        2) seat position adjustment lever
+        3) seat height adjustment lever
     Name 2 things you can do with the:   Seat
-        1)
-        2)
+        1) tilt the seat angle forward
+        2) level up the sat height
 */
 
 /*
@@ -154,61 +154,6 @@ Part 1b Assignment: 1 Step
         'int float double bool char std::string'.
 */
 
-/*
-Thing 1)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 2)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 3)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 4)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
 
  /*
 Part 1c - Lesson
@@ -280,17 +225,7 @@ Define an object that is made of 5 sub-objects.
 */
 
 /*
-Thing 10)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
+
  */
 
 /*
@@ -385,73 +320,23 @@ Step 3 is written below UDTs 5 - 9
 */
 
 /*
-Thing 5)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
+
  */
 
 /*
-Thing 6)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
+
  */
 
 /*
-Thing 7)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
+
  */
 
 /*
-Thing 8)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
+
  */
 
 /*
-Thing 9)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
+
  */
 
 /*
@@ -472,9 +357,129 @@ After you have MOVED your 10 UDTs, send me a DM with your pull request link.
 I will review the pseudo-code that you have written.
 */
 
+/*
+Thing 1) Rock Band
+5 properties:
+    1) number of players
+    2) number of rehersal time per week
+    3) number of live show time per week
+    4) amount of money made per live show
+    5) amount of money spent for rehersal in studio
+3 things it can do:
+    1) schedule the tour plan
+    2) do live show
+    3) make money
 
+Thing 2) Do YouTube
+5 properties:
+    1) hour amount on script
+    2) hour amount on shooting
+    3) hour amount on editing
+    4) view amount per video
+    5) money amount made from per 1000 view
+3 things it can do:
+    1) make video
+    2) increase follower
+    3) make money
 
+Thing 3) Song Writing
+5 properties:
+    1) number of words in lyrics
+    2) number of instruments used while producing
+    3) number of BPM
+    4) second amount of the song
+    5) number of people who listened
+3 things it can do:
+    1) reach to the audience
+    2) increase follower
+    3) nail record label's contract
 
+Thing 4) Product Management
+5 properties:
+    1) number of problems the product will be solving
+    2) amount of money will benifit from the product
+    3) number of days designing will take
+    4) number of days development will take
+    5) amount of money will be spent for making the product
+3 things it can do:
+    1) control the money spend
+    2) increase the probable income
+    3) decrease the risk of investment
+
+Thing 5) Neck
+5 properties:
+    1) fret number (int)
+    2) fret shape (std::string)
+    3) 12th fret thickness in mm (int)
+    4) fingerboard wood type (std::string)
+    5) fret indicator inlay type (std::string)
+3 things it can do:
+    1) supply finger rest
+    2) help indexing notes
+    3) hold strings in position
+
+Thing 6) Body
+5 properties:
+    1) body shape (std::string)
+    2) number of pickups (int)
+    3) number of pots (int)
+    4) wood type (std::string)
+    5) thickness in mm (int)
+3 things it can do:
+    1) hold parts together
+    2) improve the vibration
+    3) make guitar look cool
+
+Thing 7) Bridge
+5 properties:
+    1) number of string slot (int)
+    2) material type (std::string)
+    3) color (std::string)
+    4) whammy bar type (std::string)
+    5) number of body screw hole (int)
+3 things it can do:
+    1) hold strings still
+    2) make pitch dive
+    3) match the body color
+
+Thing 8) String
+5 properties:
+    1) wound type (std::string)
+    2) 1st string gauge in inch (float)
+    3) 6th string gauge in inch (float)
+    4) brand (std::string)
+    5) coat type (std::string)
+3 things it can do:
+    1) vibrate
+    2) get rust
+    3) get broken
+
+Thing 9) Pickup
+5 properties:
+    1) coil type (std::string)
+    2) string distance in mm (int)
+    3) megnet material type (std::string)
+    4) cover color (std::string)
+    5) string number (int)
+3 things it can do:
+    1) pickup string vibration
+    2) change the guitar tone
+    3) match the body color
+
+Thing 10) Electric Guitar
+5 properties:
+    1) Neck
+    2) Body
+    3) Bridge
+    4) String
+    5) Pickup
+3 things it can do:
+    1) sell money
+    2) play rock music
+    3) collect dust
+
+ */
+    
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
