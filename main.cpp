@@ -491,7 +491,7 @@ Thing 10) Electric Guitar
 
  send me a DM to review your pull request when the project is ready for review.
 
- Wait for my code review. Replit can't sync up my branch now!
+ Wait for my code review.
  */
 
 #include <iostream>
