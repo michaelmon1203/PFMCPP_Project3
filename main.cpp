@@ -1,3 +1,5 @@
+#include<string>
+
 /*
 Project 3 - Part 1a-d / 5
 Video:  Chapter 2 Part 5
@@ -350,7 +352,21 @@ Thing 1) Rock Band
     1) schedule the tour plan
     2) do live show
     3) make money
+*/
+struct RockBand
+{
+    int numberOfPlayers;
+    int numberOfRehersalTimePerWeek;
+    int numberOfLiveShowTimePerWeek;
+    int amountOfMoneyMadePerLiveShow;
+    int amountOfMoneySpentForRehersalInStudio;
 
+    void scheduleTheTourPlan(bool ifTheShowIsCancelled);
+    void doLiveShow(int showTimeAmount, int songNumbers);
+    void makeMoney(bool isThisShowHasTicket);
+};
+
+/*
 Thing 2) YouTuber
 5 properties:
     1) hour amount on script
@@ -362,7 +378,22 @@ Thing 2) YouTuber
     1) make video
     2) increase follower
     3) make money
+*/
+struct YouTuber
+{
+    float hourAmountOnScript;
+    float hourAmountOnShhoting;
+    float hourAmountOnEditing;
+    int viewAmountPerVideo;
+    float moneyAmountPerVideo;
 
+    void makeVideo(std::string videoTopic, float timeLong);
+    void increaseFollower(bool subNotify);
+    void makeMoney(bool monetization);
+};
+
+
+/*
 Thing 3) Song Writer
 5 properties:
     1) number of words in lyrics
@@ -374,7 +405,20 @@ Thing 3) Song Writer
     1) reach to the audience
     2) increase follower
     3) nail record label's contract
+*/
+struct SongWriter
+{
+    int numberOfWordsInLyrics;
+    int numberOfInstrumentsUsedWhileProducing;
+    int secondAmountOfTheSong;
+    int numberOfPeopleWhoListened;
 
+    void reachToTheAudience(int platformAmount);
+    void increaseFollower(bool needToPay);
+    void nailRecordLabelsContract(bool labelInterests, int amountOfLabelsReachedOut);
+};
+
+/*
 Thing 4) School
 5 properties:
     1) number of students
@@ -386,7 +430,22 @@ Thing 4) School
     1) educate people
     2) offer jobs for society
     3) supply well-educated labors for society
+*/
+struct School
+{
+    int numberOfStudents;
+    int amountOfGrades;
+    int numberOfTeachers;
+    int numberOfSubjects;
+    int numberOfClasses;
 
+    void educatePeople(bool openSchool);
+    void offerJobsForSociety(int jobAmount);
+    void supplyWellEducatedLaborsForSociety(bool openGraduation);
+};
+
+
+/*
 Thing 5) Neck
 5 properties:
     1) fret number (int)
@@ -398,7 +457,21 @@ Thing 5) Neck
     1) supply finger rest
     2) help indexing notes
     3) hold strings in position
+*/
+struct Neck
+{
+    int fretNumber;
+    std::string fretShape;
+    int twelvethFretThickness;
+    std::string fingerboardWoodType;
+    std::string fretIndicatorInlayType;
 
+    void supplyFingerRest(int neckBoltPosition);
+    void helpIndexingNotes(bool fretInlay);
+    void holdStringsInPosition(std::string nutType);
+};
+
+/*
 Thing 6) Body
 5 properties:
     1) body shape (std::string)
@@ -410,7 +483,21 @@ Thing 6) Body
     1) hold parts together
     2) improve the vibration
     3) make guitar look cool
+*/
+struct Body
+{
+    std::string bodyShape;
+    int numberOfPickups;
+    int numberOfPots;
+    std::string woodType;
+    int thicknessInMM;
 
+    void holdPartsTogether(std::string boltType);
+    void improveTheVibration(float resonateFrequency);
+    void makeGuitarLookCool (bool colourfulFinish);
+};
+
+/*
 Thing 7) Bridge
 5 properties:
     1) number of string slot (int)
@@ -422,7 +509,21 @@ Thing 7) Bridge
     1) hold strings still
     2) make pitch dive
     3) match the body color
+*/
+struct Bridge
+{
+    int numberOfStringSlot;
+    std::string materialType;
+    std::string color;
+    std::string whammyBarType;
+    int numberOfBodyScrewHole;
 
+    void holdStringsStill(bool stringInTune);
+    void makePitchDive(float stringTension);
+    bool matchTheBodyColor();
+};
+
+/*
 Thing 8) String
 5 properties:
     1) wound type (std::string)
@@ -434,19 +535,57 @@ Thing 8) String
     1) vibrate
     2) get rust
     3) get broken
+*/
+struct String
+{
+    std::string woundType;
+    float firstStringGaugeInInch;
+    float sixthStringGaugeInInch;
+    std::string brand;
+    std::string coatType;
 
+    struct StringType
+    {
+        bool firstStringRoundWound;
+        bool secondStringRoundWound;
+        bool thirdStringRoundWound;
+        bool fourthStringRoundWound;
+        bool fifthStringRoundWound;
+        bool sixthStringRoundWound;
+    };
+
+    void vibrate(float frequency, std::string pitchNotation);
+    void getRust(bool colorChange);
+    void getBroken(int brokenStringAmount);
+};
+
+/*
 Thing 9) Pickup
 5 properties:
     1) coil type (std::string)
     2) string distance in mm (int)
-    3) megnet material type (std::string)
+    3) magnet material type (std::string)
     4) cover color (std::string)
     5) string number (int)
 3 things it can do:
     1) pickup string vibration
     2) change the guitar tone
     3) match the body color
+*/
+struct Pickup
+{
+    std::string coilType;
+    int stringDistanceInMm;
+    std::string magnetMaterialType;
+    std::string coverColor;
+    int stringNumber;
 
+    void pickupStringVibration(bool pluckString);
+    void changeTheGuitarTone(int pickupSwitchPosition);
+    bool matchTheBodyColor();
+};
+
+/*
 Thing 10) Electric Guitar
 5 properties:
     1) Neck
@@ -458,9 +597,66 @@ Thing 10) Electric Guitar
     1) sell money
     2) play rock music
     3) collect dust
+*/
+struct ElectricGuitar
+{
+    struct Neck
+    {
+        int fretNumber;
+        std::string fretShape;
+        int twelvethFretThickness;
+        std::string fingerboardWoodType;
+        std::string fretIndicatorInlayType;
+    };
 
- */
-    
+    struct Body
+    {
+        std::string bodyShape;
+        int numberOfPickups;
+        int numberOfPots;
+        std::string woodType;
+        int thicknessInMM;
+    };
+
+    struct Bridge
+    {
+        int numberOfStringSlot;
+        std::string materialType;
+        std::string color;
+        std::string whammyBarType;
+        int numberOfBodyScrewHole;
+    };
+
+    struct String
+    {
+        std::string woundType;
+        float firstStringGaugeInInch;
+        float sixthStringGaugeInInch;
+        std::string brand;
+        std::string coatType;
+    };
+
+    struct Pickup
+    {
+        std::string coilType;
+        int stringDistanceInMm;
+        std::string magnetMaterialType;
+        std::string coverColor;
+        int stringNumber;
+    };
+
+    Neck roseWood22Frets;
+    Body alderStrat;
+    Bridge floydRose6Strings;
+    String stockRoundWound090;
+    Pickup stockSingleCoil;
+
+    void sellMoney(float askingPrice);
+    void playRockMusic(std::string songName);
+    bool collectDust();
+};
+
+
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
