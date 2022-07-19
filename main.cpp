@@ -351,7 +351,7 @@ Thing 1) Rock Band
     2) do live show
     3) make money
 
-Thing 2) Do YouTube
+Thing 2) YouTuber
 5 properties:
     1) hour amount on script
     2) hour amount on shooting
@@ -363,7 +363,7 @@ Thing 2) Do YouTube
     2) increase follower
     3) make money
 
-Thing 3) Song Writing
+Thing 3) Song Writer
 5 properties:
     1) number of words in lyrics
     2) number of instruments used while producing
@@ -375,17 +375,17 @@ Thing 3) Song Writing
     2) increase follower
     3) nail record label's contract
 
-Thing 4) Product Management
+Thing 4) School
 5 properties:
-    1) number of problems the product will be solving
-    2) amount of money will benifit from the product
-    3) number of days designing will take
-    4) number of days development will take
-    5) amount of money will be spent for making the product
+    1) number of students
+    2) amount of grades
+    3) number of teachers
+    4) number of subjects
+    5) number of classes
 3 things it can do:
-    1) control the money spend
-    2) increase the probable income
-    3) decrease the risk of investment
+    1) educate people
+    2) offer jobs for society
+    3) supply well-educated labors for society
 
 Thing 5) Neck
 5 properties:
