@@ -207,12 +207,25 @@ struct RockBand
     int numberOfPlayers = 3;
     int numberOfRehersalTimePerWeek = 2;
     int numberOfLiveShowTimePerWeek = 1;
-    int amountOfMoneyMadePerLiveShow = 300;
-    int amountOfMoneySpentForRehersalInStudio = 50;
+    float amountOfMoneyMadePerLiveShow = 300.0f;
+    float amountOfMoneySpentForRehersalInStudio = 50.0f;
 
-    void scheduleTheTourPlan(bool ifTheShowIsCancelled = true);
+    struct BandManager
+    {
+        bool friendWillingToHelpForFree = false;
+        bool fullTimeManagement = false;
+        bool offlineManagement = false;
+        float regularSalaryPerMonth = 0;
+        float percentageShareOfIncome = 30.0f;
+        
+        void bookRehersalRoom(float bandBudgetPerHour = 50);
+        void scheduleTheTourPlan(bool ifTheShowIsCancelled = true);
+        void doMarketing(int posterPrintAmount = 100);
+    };
+
+    void doRehersal(bool allBandMemberAttended);
     void doLiveShow(int showTimeAmount = 120, int songNumbers = 25);
-
+    
     //returns how much money the band is making
     float makeMoney(bool isThisShowHasTicket = true);
 };
@@ -259,12 +272,13 @@ Thing 3) Song Writer
 */
 struct SongWriter
 {
+    std::string artistName = "Johnny Cash";
     int numberOfWordsInLyrics = 300;
     int numberOfInstrumentsUsedWhileProducing = 6;
     int secondAmountOfTheSong = 150;
     int numberOfPeopleWhoListened = 5000;
 
-    void reachToTheAudience(int platformAmount, YouTuber recordLabelA);
+    void reachToTheAudience(int platformAmount, YouTuber songReviewerA);
     void increaseFollower(bool needToPay = true);
     void nailRecordLabelsContract(bool labelInterests = true, int amountOfLabelsReachedOut = 10);
 };
@@ -397,26 +411,6 @@ struct String
     std::string brand = "Elixir";
     std::string coatType = "ultra-thin";
 
-    struct StringType
-    {
-        bool firstStringWound = false;
-        bool secondStringWound = false;
-        bool thirdStringWound = true;
-        bool fourthStringWound = true;
-        bool fifthStringWound = true;
-        bool sixthStringWound = true;
-
-        //returns how many wound strings do we have
-        int checkWoundString(int woundStringAmount = 0);
-
-        //returns the proper string pack name
-        std::string chooseStringPack(int roundWoundStringNum = 3, int flatWoundStringNum = 4);
-
-        //returns how much would the proper string pack cost
-        float calculateStringPackBudget(float averageCostOfStringPack = 6);
-        
-    };
-
     void vibrate(Body strat, float frequency = 440, std::string pitchNotation = "A4");
     void getRust(bool colorChange = false);
     void getBroken(int brokenStringAmount = 0);
@@ -465,94 +459,6 @@ Thing 10) Electric Guitar
 */
 struct ElectricGuitar
 {
-    struct Neck
-    {
-        int fretNumber = 22;
-        std::string fretShape = "jumbo";
-        int twelvethFretThickness = 30;
-        std::string fingerboardWoodType = "maple";
-        std::string fretIndicatorInlayType = "shell dot";
-
-        void supplyFingerRest(int neckBoltPosition);
-        void helpIndexingNotes(SongWriter classicalWriterA, bool fretInlay = true);
-        void holdStringsInPosition(std::string nutType = "cow bone");
-    };
-
-    struct Body
-    {
-        std::string bodyShape = "strat";
-        int numberOfPickups = 3;
-        int numberOfPots = 3;
-        std::string woodType= "alder";
-        int thicknessInMM = 40;
-    
-        void holdPartsTogether(std::string boltType = "bolt on");
-        void improveTheVibration(float resonateFrequency = 50);
-        void makeGuitarLookCool (SongWriter rockWriterA, bool colourfulFinish = true);
-    };
-
-    struct Bridge
-    {
-        int numberOfStringSlot = 6;
-        std::string materialType = "stainless steel";
-        std::string color = "nickel";
-        std::string whammyBarType = "floyd rose";
-        int numberOfBodyScrewHole = 2;
-
-         void holdStringsStill(bool stringInTune = true);
-        void makePitchDive(float stringTensionInKg = 1);
-
-        //returns if the bridge matches guitar body's color
-        bool matchTheBodyColor(SongWriter rockWriterA);
-    };
-
-    struct String
-    {
-        std::string woundType = "round wound";
-        float firstStringGaugeInInch = 0.090f;
-        float sixthStringGaugeInInch = 0.042f;
-        std::string brand = "Elixir";
-        std::string coatType = "ultra-thin";
-
-        struct StringType
-        {
-            bool firstStringWound = false;
-            bool secondStringWound = false;
-            bool thirdStringWound = true;
-            bool fourthStringWound = true;
-            bool fifthStringWound = true;
-            bool sixthStringWound = true;
-
-            //returns how many wound strings do we have
-            int checkWoundString(int woundStringAmount = 0);
-
-            //returns the proper string pack name
-            std::string chooseStringPack(int roundWoundStringNum = 3, int flatWoundStringNum = 4);
-
-            //returns how much would the proper string pack cost
-            float calculateStringPackBudget(float averageCostOfStringPack = 6);
-        };
-        
-        void vibrate(Body strat, float frequency = 440, std::string pitchNotation = "A4");
-        void getRust(bool colorChange = false);
-        void getBroken(int brokenStringAmount = 0);
-};
-
-    struct Pickup
-    {
-        std::string coilType = "single coil";
-        int stringDistanceInMm = 8;
-        std::string magnetMaterialType = "alnico 5";
-        std::string coverColor = "ivory";
-        int stringNumber = 6;
-
-        void pickupStringVibration(bool pluckString = false);
-        void changeTheGuitarTone(int pickupSwitchPosition = 5);
-
-        //returns if pickup cover color matches the body color
-        bool matchTheBodyColor(SongWriter rockWriterA);
-    };
-
     Neck roseWood22Frets;
     Body alderStrat;
     Bridge floydRose6Strings;
