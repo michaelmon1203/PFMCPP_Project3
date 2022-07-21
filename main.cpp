@@ -204,15 +204,17 @@ Thing 1) Rock Band
 */
 struct RockBand
 {
-    int numberOfPlayers;
-    int numberOfRehersalTimePerWeek;
-    int numberOfLiveShowTimePerWeek;
-    int amountOfMoneyMadePerLiveShow;
-    int amountOfMoneySpentForRehersalInStudio;
+    int numberOfPlayers = 3;
+    int numberOfRehersalTimePerWeek = 2;
+    int numberOfLiveShowTimePerWeek = 1;
+    int amountOfMoneyMadePerLiveShow = 300;
+    int amountOfMoneySpentForRehersalInStudio = 50;
 
-    void scheduleTheTourPlan(bool ifTheShowIsCancelled);
-    void doLiveShow(int showTimeAmount, int songNumbers);
-    void makeMoney(bool isThisShowHasTicket);
+    void scheduleTheTourPlan(bool ifTheShowIsCancelled = true);
+    void doLiveShow(int showTimeAmount = 120, int songNumbers = 25);
+
+    //returns how much money the band is making
+    float makeMoney(bool isThisShowHasTicket = true);
 };
 
 /*
@@ -230,15 +232,15 @@ Thing 2) YouTuber
 */
 struct YouTuber
 {
-    float hourAmountOnScript;
-    float hourAmountOnShhoting;
-    float hourAmountOnEditing;
-    int viewAmountPerVideo;
-    float moneyAmountPerVideo;
+    float hourAmountOnScript = 4;
+    float hourAmountOnShooting = 3;
+    float hourAmountOnEditing = 3;
+    int viewAmountPerVideo = 7000;
+    float moneyAmountPerVideo = 10;
 
-    void makeVideo(std::string videoTopic, float timeLong);
-    void increaseFollower(bool subNotify);
-    void makeMoney(bool monetization);
+    void makeVideo(std::string videoTopic, RockBand ACDC, float timeLong = 8.0f);
+    void increaseFollower(bool subNotify = true);
+    void makeMoney(bool monetization = true);
 };
 
 
@@ -257,14 +259,14 @@ Thing 3) Song Writer
 */
 struct SongWriter
 {
-    int numberOfWordsInLyrics;
-    int numberOfInstrumentsUsedWhileProducing;
-    int secondAmountOfTheSong;
-    int numberOfPeopleWhoListened;
+    int numberOfWordsInLyrics = 300;
+    int numberOfInstrumentsUsedWhileProducing = 6;
+    int secondAmountOfTheSong = 150;
+    int numberOfPeopleWhoListened = 5000;
 
-    void reachToTheAudience(int platformAmount);
-    void increaseFollower(bool needToPay);
-    void nailRecordLabelsContract(bool labelInterests, int amountOfLabelsReachedOut);
+    void reachToTheAudience(int platformAmount, YouTuber recordLabelA);
+    void increaseFollower(bool needToPay = true);
+    void nailRecordLabelsContract(bool labelInterests = true, int amountOfLabelsReachedOut = 10);
 };
 
 /*
@@ -282,15 +284,15 @@ Thing 4) School
 */
 struct School
 {
-    int numberOfStudents;
-    int amountOfGrades;
-    int numberOfTeachers;
-    int numberOfSubjects;
-    int numberOfClasses;
+    int numberOfStudents = 1000;
+    int amountOfGrades = 3;
+    int numberOfTeachers = 5;
+    int numberOfSubjects = 8;
+    int numberOfClasses = 300;
 
-    void educatePeople(bool openSchool);
-    void offerJobsForSociety(int jobAmount);
-    void supplyWellEducatedLaborsForSociety(bool openGraduation);
+    void educatePeople(bool openSchool = true);
+    void offerJobsForSociety(SongWriter popSongWriterA, int jobAmount = 100);
+    void supplyWellEducatedLaborsForSociety(bool openGraduation = true);
 };
 
 
@@ -309,15 +311,15 @@ Thing 5) Neck
 */
 struct Neck
 {
-    int fretNumber;
-    std::string fretShape;
-    int twelvethFretThickness;
-    std::string fingerboardWoodType;
-    std::string fretIndicatorInlayType;
+    int fretNumber = 22;
+    std::string fretShape = "jumbo";
+    int twelvethFretThickness = 30;
+    std::string fingerboardWoodType = "maple";
+    std::string fretIndicatorInlayType = "shell dot";
 
     void supplyFingerRest(int neckBoltPosition);
-    void helpIndexingNotes(bool fretInlay);
-    void holdStringsInPosition(std::string nutType);
+    void helpIndexingNotes(SongWriter classicalWriterA, bool fretInlay = true);
+    void holdStringsInPosition(std::string nutType = "cow bone");
 };
 
 /*
@@ -335,15 +337,15 @@ Thing 6) Body
 */
 struct Body
 {
-    std::string bodyShape;
-    int numberOfPickups;
-    int numberOfPots;
-    std::string woodType;
-    int thicknessInMM;
+    std::string bodyShape = "strat";
+    int numberOfPickups = 3;
+    int numberOfPots = 3;
+    std::string woodType= "alder";
+    int thicknessInMM = 40;
 
-    void holdPartsTogether(std::string boltType);
-    void improveTheVibration(float resonateFrequency);
-    void makeGuitarLookCool (bool colourfulFinish);
+    void holdPartsTogether(std::string boltType = "bolt on");
+    void improveTheVibration(float resonateFrequency = 50);
+    void makeGuitarLookCool (SongWriter rockWriterA, bool colourfulFinish = true);
 };
 
 /*
@@ -361,15 +363,17 @@ Thing 7) Bridge
 */
 struct Bridge
 {
-    int numberOfStringSlot;
-    std::string materialType;
-    std::string color;
-    std::string whammyBarType;
-    int numberOfBodyScrewHole;
+    int numberOfStringSlot = 6;
+    std::string materialType = "stainless steel";
+    std::string color = "nickel";
+    std::string whammyBarType = "floyd rose";
+    int numberOfBodyScrewHole = 2;
 
-    void holdStringsStill(bool stringInTune);
-    void makePitchDive(float stringTension);
-    bool matchTheBodyColor();
+    void holdStringsStill(bool stringInTune = true);
+    void makePitchDive(float stringTensionInKg = 1);
+
+    //returns if the bridge matches guitar body's color
+    bool matchTheBodyColor(SongWriter rockWriterA);
 };
 
 /*
@@ -387,25 +391,35 @@ Thing 8) String
 */
 struct String
 {
-    std::string woundType;
-    float firstStringGaugeInInch;
-    float sixthStringGaugeInInch;
-    std::string brand;
-    std::string coatType;
+    std::string woundType = "round wound";
+    float firstStringGaugeInInch = 0.090f;
+    float sixthStringGaugeInInch = 0.042f;
+    std::string brand = "Elixir";
+    std::string coatType = "ultra-thin";
 
     struct StringType
     {
-        bool firstStringRoundWound;
-        bool secondStringRoundWound;
-        bool thirdStringRoundWound;
-        bool fourthStringRoundWound;
-        bool fifthStringRoundWound;
-        bool sixthStringRoundWound;
+        bool firstStringWound = false;
+        bool secondStringWound = false;
+        bool thirdStringWound = true;
+        bool fourthStringWound = true;
+        bool fifthStringWound = true;
+        bool sixthStringWound = true;
+
+        //returns how many wound strings do we have
+        int checkWoundString(int woundStringAmount = 0);
+
+        //returns the proper string pack name
+        std::string chooseStringPack(int roundWoundStringNum = 3, int flatWoundStringNum = 4);
+
+        //returns how much would the proper string pack cost
+        float calculateStringPackBudget(float averageCostOfStringPack = 6);
+        
     };
 
-    void vibrate(float frequency, std::string pitchNotation);
-    void getRust(bool colorChange);
-    void getBroken(int brokenStringAmount);
+    void vibrate(Body strat, float frequency = 440, std::string pitchNotation = "A4");
+    void getRust(bool colorChange = false);
+    void getBroken(int brokenStringAmount = 0);
 };
 
 /*
@@ -423,15 +437,17 @@ Thing 9) Pickup
 */
 struct Pickup
 {
-    std::string coilType;
-    int stringDistanceInMm;
-    std::string magnetMaterialType;
-    std::string coverColor;
-    int stringNumber;
+    std::string coilType = "single coil";
+    int stringDistanceInMm = 8;
+    std::string magnetMaterialType = "alnico 5";
+    std::string coverColor = "ivory";
+    int stringNumber = 6;
 
-    void pickupStringVibration(bool pluckString);
-    void changeTheGuitarTone(int pickupSwitchPosition);
-    bool matchTheBodyColor();
+    void pickupStringVibration(bool pluckString = false);
+    void changeTheGuitarTone(int pickupSwitchPosition = 5);
+
+    //returns if pickup cover color matches the body color
+    bool matchTheBodyColor(SongWriter rockWriterA);
 };
 
 /*
@@ -451,47 +467,90 @@ struct ElectricGuitar
 {
     struct Neck
     {
-        int fretNumber;
-        std::string fretShape;
-        int twelvethFretThickness;
-        std::string fingerboardWoodType;
-        std::string fretIndicatorInlayType;
+        int fretNumber = 22;
+        std::string fretShape = "jumbo";
+        int twelvethFretThickness = 30;
+        std::string fingerboardWoodType = "maple";
+        std::string fretIndicatorInlayType = "shell dot";
+
+        void supplyFingerRest(int neckBoltPosition);
+        void helpIndexingNotes(SongWriter classicalWriterA, bool fretInlay = true);
+        void holdStringsInPosition(std::string nutType = "cow bone");
     };
 
     struct Body
     {
-        std::string bodyShape;
-        int numberOfPickups;
-        int numberOfPots;
-        std::string woodType;
-        int thicknessInMM;
+        std::string bodyShape = "strat";
+        int numberOfPickups = 3;
+        int numberOfPots = 3;
+        std::string woodType= "alder";
+        int thicknessInMM = 40;
+    
+        void holdPartsTogether(std::string boltType = "bolt on");
+        void improveTheVibration(float resonateFrequency = 50);
+        void makeGuitarLookCool (SongWriter rockWriterA, bool colourfulFinish = true);
     };
 
     struct Bridge
     {
-        int numberOfStringSlot;
-        std::string materialType;
-        std::string color;
-        std::string whammyBarType;
-        int numberOfBodyScrewHole;
+        int numberOfStringSlot = 6;
+        std::string materialType = "stainless steel";
+        std::string color = "nickel";
+        std::string whammyBarType = "floyd rose";
+        int numberOfBodyScrewHole = 2;
+
+         void holdStringsStill(bool stringInTune = true);
+        void makePitchDive(float stringTensionInKg = 1);
+
+        //returns if the bridge matches guitar body's color
+        bool matchTheBodyColor(SongWriter rockWriterA);
     };
 
     struct String
     {
-        std::string woundType;
-        float firstStringGaugeInInch;
-        float sixthStringGaugeInInch;
-        std::string brand;
-        std::string coatType;
-    };
+        std::string woundType = "round wound";
+        float firstStringGaugeInInch = 0.090f;
+        float sixthStringGaugeInInch = 0.042f;
+        std::string brand = "Elixir";
+        std::string coatType = "ultra-thin";
+
+        struct StringType
+        {
+            bool firstStringWound = false;
+            bool secondStringWound = false;
+            bool thirdStringWound = true;
+            bool fourthStringWound = true;
+            bool fifthStringWound = true;
+            bool sixthStringWound = true;
+
+            //returns how many wound strings do we have
+            int checkWoundString(int woundStringAmount = 0);
+
+            //returns the proper string pack name
+            std::string chooseStringPack(int roundWoundStringNum = 3, int flatWoundStringNum = 4);
+
+            //returns how much would the proper string pack cost
+            float calculateStringPackBudget(float averageCostOfStringPack = 6);
+        };
+        
+        void vibrate(Body strat, float frequency = 440, std::string pitchNotation = "A4");
+        void getRust(bool colorChange = false);
+        void getBroken(int brokenStringAmount = 0);
+};
 
     struct Pickup
     {
-        std::string coilType;
-        int stringDistanceInMm;
-        std::string magnetMaterialType;
-        std::string coverColor;
-        int stringNumber;
+        std::string coilType = "single coil";
+        int stringDistanceInMm = 8;
+        std::string magnetMaterialType = "alnico 5";
+        std::string coverColor = "ivory";
+        int stringNumber = 6;
+
+        void pickupStringVibration(bool pluckString = false);
+        void changeTheGuitarTone(int pickupSwitchPosition = 5);
+
+        //returns if pickup cover color matches the body color
+        bool matchTheBodyColor(SongWriter rockWriterA);
     };
 
     Neck roseWood22Frets;
@@ -500,9 +559,12 @@ struct ElectricGuitar
     String stockRoundWound090;
     Pickup stockSingleCoil;
 
-    void sellMoney(float askingPrice);
-    void playRockMusic(std::string songName);
-    bool collectDust();
+    //returns how much money will get from selling this guitar
+    float sellMoney(float totallValue = 0, float askingPrice = 0, float buyerBudget = 0);
+    void playRockMusic(SongWriter rockWriterA, std::string songName = "Hell's Bell");
+    
+    //returns if the guitar is currently collecting dust
+    bool collectDust(int useTimesInRecentWeek = 0);
 };
 
 
