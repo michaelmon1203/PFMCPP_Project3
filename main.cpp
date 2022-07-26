@@ -1,4 +1,6 @@
- /*
+#include<math.h>
+
+/*
  Project 3 - Part 2 / 5
  Video: Chapter 2 Part 6
  Implementations tasks
@@ -107,9 +109,57 @@ struct CarWash
     you should be able to deduce the return type of those functions based on their usage in Person::run()
     You'll need to insert the Person struct from the video in the space below.
  */
+struct Person
+{
+    int age;
+    int height;
+    float hairLength;
+    float GPA;
+    unsigned int SATScore;
+    int distanceTraveled;
+    int time;
 
+    struct Foot
+    {
+        int footSize = 290;
+        int footNum = 0;
 
+        void stepFoward();
+        int stepSize();
+    };
 
+    Foot leftFoot;
+    Foot rightFoot;
+
+    void run(int howFast, bool startWithLeftFoot);
+};
+
+void Person::Foot::stepFoward()
+{
+    footNum += 1;
+}
+
+int Person::Foot::stepSize()
+{
+    int distancePerFoot = footNum * footSize;
+    return distancePerFoot;
+}
+
+void Person::run(int howFast, bool startWithLeftFoot)
+{
+    if(startWithLeftFoot == true)
+    {
+        leftFoot.stepFoward();
+        rightFoot.stepFoward();
+    }
+    else
+    {
+        rightFoot.stepFoward();
+        leftFoot.stepFoward();
+    }
+    distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
+    howFast = distanceTraveled / time;
+}
 
 
  /*
@@ -128,26 +178,14 @@ struct CarWash
  */
 
 
-/*
-Thing 1) Rock Band
-5 properties:
-    1) number of players
-    2) number of rehersal time per week
-    3) number of live show time per week
-    4) amount of money made per live show
-    5) amount of money spent for rehersal in studio
-3 things it can do:
-    1) schedule the tour plan
-    2) do live show
-    3) make money
-*/
 struct RockBand
 {
     int numberOfPlayers = 3;
-    int numberOfRehersalTimePerWeek = 2;
-    int numberOfLiveShowTimePerWeek = 1;
+    int numberOfRehersalTimePerWeek = 0;
+    int numberOfLiveShowTimePerWeek = 0;
     float amountOfMoneyMadePerLiveShow = 300.0f;
-    float amountOfMoneySpentForRehersalInStudio = 50.0f;
+    float amountOfMoneySpentPerRehersal = 50.0f;
+    float moneyMade;
 
     struct BandManager
     {
@@ -155,33 +193,75 @@ struct RockBand
         bool fullTimeManagement = false;
         bool offlineManagement = false;
         float regularSalaryPerMonth = 0;
-        float percentageShareOfIncome = 30.0f;
+        bool ifTheShowIsCancelled = true;
+        int bookRehersalTime = 0;
         
         void bookRehersalRoom(float bandBudgetPerHour = 50);
-        void scheduleTheTourPlan(bool ifTheShowIsCancelled = true);
+        bool scheduleTheTourPlan(bool barOpen = false);
         void doMarketing(int posterPrintAmount = 100);
     };
 
     void doRehersal(bool allBandMemberAttended);
     void doLiveShow(int showTimeAmount = 120, int songNumbers = 25);
-    
-    //returns how much money the band is making
     float makeMoney(bool isThisShowHasTicket = true);
 };
 
-/*
-Thing 2) YouTuber
-5 properties:
-    1) hour amount on script
-    2) hour amount on shooting
-    3) hour amount on editing
-    4) view amount per video
-    5) money amount made from per 1000 view
-3 things it can do:
-    1) make video
-    2) increase follower
-    3) make money
-*/
+bool RockBand::BandManager::scheduleTheTourPlan(bool barOpen)
+{
+    if(barOpen)
+    {
+        bookRehersalTime -=1;
+    }
+    else
+    {
+        ifTheShowIsCancelled = true;
+    }
+    return ifTheShowIsCancelled;
+}
+
+void RockBand::BandManager::bookRehersalRoom(float bandBudgetPerHour)
+{
+    if(bandBudgetPerHour > 0 && ifTheShowIsCancelled == false)
+    {
+        bookRehersalTime += 1;
+    }
+}
+
+void RockBand::BandManager::doMarketing(int posterPrintAmount)
+{
+    if(ifTheShowIsCancelled)
+    {
+        posterPrintAmount = 0;   
+    }
+    else
+    {
+        posterPrintAmount = 300;   
+    }
+}
+
+void RockBand::doRehersal(bool allBandMemberAttended)
+{
+    if(allBandMemberAttended)
+    {
+        numberOfRehersalTimePerWeek +=1;
+    }
+}
+
+void RockBand::doLiveShow(int showTimeAmount, int songNumbers)
+{
+    songNumbers = showTimeAmount / 4;
+}
+
+float RockBand::makeMoney(bool isThisShowHasTicket)
+{
+    if(isThisShowHasTicket)
+    {
+        moneyMade = amountOfMoneyMadePerLiveShow * numberOfLiveShowTimePerWeek - amountOfMoneySpentPerRehersal * numberOfRehersalTimePerWeek;
+    }
+    return moneyMade;
+}
+
+
 struct YouTuber
 {
     float hourAmountOnScript = 4;
@@ -189,26 +269,39 @@ struct YouTuber
     float hourAmountOnEditing = 3;
     int viewAmountPerVideo = 7000;
     float moneyAmountPerVideo = 10;
+    int videoNum = 1;
+    float moneyMade = 0.0f;
 
     void makeVideo(std::string videoTopic, RockBand ACDC, float timeLong = 8.0f);
     void increaseFollower(bool subNotify = true);
-    void makeMoney(bool monetization = true);
+    float makeMoney(bool monetization = true);
 };
 
+void YouTuber::makeVideo(std::string videoTopic, RockBand ACDC, float timeLong)
+{ 
+    timeLong = ACDC.numberOfPlayers * 2;
+    videoTopic = "ACDC";
+}
 
-/*
-Thing 3) Song Writer
-5 properties:
-    1) number of words in lyrics
-    2) number of instruments used while producing
-    3) number of BPM
-    4) second amount of the song
-    5) number of people who listened
-3 things it can do:
-    1) reach to the audience
-    2) increase follower
-    3) nail record label's contract
-*/
+void YouTuber::increaseFollower(bool subNotify)
+{
+    if(subNotify)
+    {
+        int follower;
+        follower = (int) round(viewAmountPerVideo * 0.01);
+    }
+}
+
+float YouTuber::makeMoney(bool monetization)
+{
+    if(monetization)
+    {
+        moneyMade = moneyAmountPerVideo * videoNum;
+    }
+    return moneyMade;
+}
+
+
 struct SongWriter
 {
     std::string artistName = "Johnny Cash";
@@ -216,52 +309,74 @@ struct SongWriter
     int numberOfInstrumentsUsedWhileProducing = 6;
     int secondAmountOfTheSong = 150;
     int numberOfPeopleWhoListened = 5000;
+    int recordLabelsContract = 0;
 
     void reachToTheAudience(int platformAmount, YouTuber songReviewerA);
     void increaseFollower(bool needToPay = true);
     void nailRecordLabelsContract(bool labelInterests = true, int amountOfLabelsReachedOut = 10);
 };
 
-/*
-Thing 4) School
-5 properties:
-    1) number of students
-    2) amount of grades
-    3) number of teachers
-    4) number of subjects
-    5) number of classes
-3 things it can do:
-    1) educate people
-    2) offer jobs for society
-    3) supply well-educated labors for society
-*/
+void SongWriter::reachToTheAudience(int platformAmount, YouTuber songReviewerA)
+{
+    RockBand rockWriter;
+    platformAmount = 3;
+    numberOfPeopleWhoListened = numberOfPeopleWhoListened / platformAmount;
+    songReviewerA.videoNum += 1;
+}
+
+void SongWriter::increaseFollower(bool needToPay)
+{
+    if(needToPay)
+    {
+        numberOfPeopleWhoListened = (int) round(numberOfPeopleWhoListened * 0.3);
+    }
+}
+
+void SongWriter::nailRecordLabelsContract(bool labelInterests, int amountOfLabelsReachedOut)
+{
+    if(labelInterests && amountOfLabelsReachedOut > 0)
+    {
+        recordLabelsContract += 1;
+    }
+}
+
+
 struct School
 {
-    int numberOfStudents = 1000;
-    int amountOfGrades = 3;
+    int graduationPerYear = 0;
+    int numberOfStudentsPerGrade = 1000;
+    int numberOfGrades = 3;
     int numberOfTeachers = 5;
     int numberOfSubjects = 8;
     int numberOfClasses = 300;
 
-    void educatePeople(bool openSchool = true);
-    void offerJobsForSociety(SongWriter popSongWriterA, int jobAmount = 100);
+    void educatePeople(bool openSchool, int numberOfStudents);
+    void offerJobsForSociety(int jobAmount = 100);
     void supplyWellEducatedLaborsForSociety(bool openGraduation = true);
 };
 
+void School::educatePeople(bool openSchool, int numberOfStudents)
+{
+    if(openSchool)
+    {
+        numberOfStudents = numberOfStudentsPerGrade * numberOfGrades;
+    }
+}
 
-/*
-Thing 5) Neck
-5 properties:
-    1) fret number (int)
-    2) fret shape (std::string)
-    3) 12th fret thickness in mm (int)
-    4) fingerboard wood type (std::string)
-    5) fret indicator inlay type (std::string)
-3 things it can do:
-    1) supply finger rest
-    2) help indexing notes
-    3) hold strings in position
-*/
+void School::offerJobsForSociety(int jobAmount)
+{
+    jobAmount += numberOfTeachers;
+}
+
+void School::supplyWellEducatedLaborsForSociety(bool openGraduation)
+{
+    if(openGraduation)
+    {
+        graduationPerYear = numberOfStudentsPerGrade;
+    }
+}
+
+
 struct Neck
 {
     int fretNumber = 22;
@@ -271,23 +386,29 @@ struct Neck
     std::string fretIndicatorInlayType = "shell dot";
 
     void supplyFingerRest(int neckBoltPosition);
-    void helpIndexingNotes(SongWriter classicalWriterA, bool fretInlay = true);
-    void holdStringsInPosition(std::string nutType = "cow bone");
+    void helpIndexingNotes(bool fretInlay = true);
+    void holdStringsInPosition(float nutDepth = 0);
 };
 
-/*
-Thing 6) Body
-5 properties:
-    1) body shape (std::string)
-    2) number of pickups (int)
-    3) number of pots (int)
-    4) wood type (std::string)
-    5) thickness in mm (int)
-3 things it can do:
-    1) hold parts together
-    2) improve the vibration
-    3) make guitar look cool
-*/
+void Neck::supplyFingerRest(int neckBoltPosition)
+{
+    neckBoltPosition = fretNumber - 7;
+}
+
+void Neck::helpIndexingNotes(bool fretInlay)
+{
+    if(fretInlay)
+    {
+        twelvethFretThickness += 5;
+    }
+}
+
+void Neck::holdStringsInPosition(float nutDepth)
+{
+    nutDepth = 3.5f;
+}
+
+
 struct Body
 {
     std::string bodyShape = "strat";
@@ -301,19 +422,31 @@ struct Body
     void makeGuitarLookCool (SongWriter rockWriterA, bool colourfulFinish = true);
 };
 
-/*
-Thing 7) Bridge
-5 properties:
-    1) number of string slot (int)
-    2) material type (std::string)
-    3) color (std::string)
-    4) whammy bar type (std::string)
-    5) number of body screw hole (int)
-3 things it can do:
-    1) hold strings still
-    2) make pitch dive
-    3) match the body color
-*/
+void Body::holdPartsTogether(std::string boltType)
+{
+    if (boltType == "bolt on")
+    {
+        thicknessInMM += 10;
+    }
+}
+
+void Body::improveTheVibration(float resonateFrequency)
+{
+    if(woodType == "alder")
+    {
+        resonateFrequency = resonateFrequency * 1.5f;
+    }
+}
+
+void Body::makeGuitarLookCool(SongWriter rockWriterA, bool colourfulFinish)
+{
+    if(colourfulFinish)
+    {
+        rockWriterA.increaseFollower();
+    }
+}
+
+
 struct Bridge
 {
     int numberOfStringSlot = 6;
@@ -321,27 +454,39 @@ struct Bridge
     std::string color = "nickel";
     std::string whammyBarType = "floyd rose";
     int numberOfBodyScrewHole = 2;
+    bool intonationAdjustable = true;
 
     void holdStringsStill(bool stringInTune = true);
     void makePitchDive(float stringTensionInKg = 1);
-
-    //returns if the bridge matches guitar body's color
-    bool matchTheBodyColor(SongWriter rockWriterA);
+    void matchTheBodyColor(SongWriter rockWriterA);
 };
 
-/*
-Thing 8) String
-5 properties:
-    1) wound type (std::string)
-    2) 1st string gauge in inch (float)
-    3) 6th string gauge in inch (float)
-    4) brand (std::string)
-    5) coat type (std::string)
-3 things it can do:
-    1) vibrate
-    2) get rust
-    3) get broken
-*/
+void Bridge::holdStringsStill(bool stringInTune)
+{
+    if(intonationAdjustable)
+    {
+        stringInTune = true;
+    }
+    else
+    {
+        stringInTune = false;
+    }
+}
+
+void Bridge::makePitchDive(float stringTensionInKg)
+{
+    if(whammyBarType == "floyd rose")
+    {
+        stringTensionInKg = stringTensionInKg * 0.3f;
+    }
+}
+
+void Bridge::matchTheBodyColor(SongWriter rockWriterA)
+{
+    rockWriterA.increaseFollower();
+}
+
+
 struct String
 {
     std::string woundType = "round wound";
@@ -350,24 +495,38 @@ struct String
     std::string brand = "Elixir";
     std::string coatType = "ultra-thin";
 
-    void vibrate(Body strat, float frequency = 440, std::string pitchNotation = "A4");
-    void getRust(bool colorChange = false);
-    void getBroken(int brokenStringAmount = 0);
+    void vibrate(float frequency = 440, std::string pitchNotation = "A4");
+    bool getRust(bool colorChange = false, float playHour = 0, bool rusted = false);
+    bool getBroken(int brokenStringAmount = 0, bool broken = false);
 };
 
-/*
-Thing 9) Pickup
-5 properties:
-    1) coil type (std::string)
-    2) string distance in mm (int)
-    3) magnet material type (std::string)
-    4) cover color (std::string)
-    5) string number (int)
-3 things it can do:
-    1) pickup string vibration
-    2) change the guitar tone
-    3) match the body color
-*/
+void String::vibrate(float frequency, std::string pitchNotation)
+{
+    if(pitchNotation == "A4")
+    {
+        frequency = 400;
+    }
+}
+
+bool String::getRust(bool colorChange, float playHour, bool rusted)
+{
+    if(playHour > 200 && brand == "Elixir" && colorChange == true)
+    {
+        rusted = true;
+    }
+    return rusted;
+}
+
+bool String::getBroken(int brokenStringAmount, bool broken)
+{
+    if(brokenStringAmount > 0)
+    {
+        broken = true;
+    }
+    return broken;
+}
+
+
 struct Pickup
 {
     std::string coilType = "single coil";
@@ -376,26 +535,38 @@ struct Pickup
     std::string coverColor = "ivory";
     int stringNumber = 6;
 
-    void pickupStringVibration(bool pluckString = false);
-    void changeTheGuitarTone(int pickupSwitchPosition = 5);
-
-    //returns if pickup cover color matches the body color
-    bool matchTheBodyColor(SongWriter rockWriterA);
+    void pickupStringVibration( String fifthString, bool pluckString = false);
+    bool changeTheGuitarTone(int pickupSwitchPosition = 5, bool toneChanged = false);
+    void matchTheBodyColor(SongWriter rockWriterA);
 };
 
-/*
-Thing 10) Electric Guitar
-5 properties:
-    1) Neck
-    2) Body
-    3) Bridge
-    4) String
-    5) Pickup
-3 things it can do:
-    1) sell money
-    2) play rock music
-    3) collect dust
-*/
+void Pickup::pickupStringVibration(String fifthString, bool pluckString)
+{
+    if(pluckString)
+    {
+        fifthString.vibrate();
+    }
+}
+
+bool Pickup::changeTheGuitarTone(int pickupSwitchPosition, bool toneChanged)
+{
+    if(pickupSwitchPosition != 5)
+    {
+        toneChanged = true;
+    }
+    else
+    {
+        toneChanged = false;
+    }
+    return toneChanged;
+}
+
+void Pickup::matchTheBodyColor(SongWriter rockWriterA)
+{
+    rockWriterA.increaseFollower();
+}
+
+
 struct ElectricGuitar
 {
     Neck roseWood22Frets;
@@ -404,15 +575,40 @@ struct ElectricGuitar
     String stockRoundWound090;
     Pickup stockSingleCoil;
 
-    //returns how much money will get from selling this guitar
     float sellMoney(float totallValue = 0, float askingPrice = 0, float buyerBudget = 0);
     void playRockMusic(SongWriter rockWriterA, std::string songName = "Hell's Bell");
-    
-    //returns if the guitar is currently collecting dust
-    bool collectDust(int useTimesInRecentWeek = 0);
+    bool usageCheck(int useTimesInRecentWeek = 0, bool collectDust = false);
 };
 
+float ElectricGuitar::sellMoney(float totalValue, float askingPrice, float buyerBudget)
+{
+    if(buyerBudget > askingPrice)
+    {
+        totalValue = buyerBudget;
+    }
+    return totalValue;
+}
 
+void ElectricGuitar::playRockMusic(SongWriter rockWriterA, std::string songName)
+{
+    if(songName == "Hell's Bell")
+    {
+        rockWriterA.increaseFollower();
+    }
+}
+
+bool ElectricGuitar::usageCheck(int useTimesInRecentWeek, bool collectDust)
+{
+    if(useTimesInRecentWeek == 0)
+    {
+        collectDust = true;
+    }
+    else
+    {
+        collectDust = false;
+    }
+    return collectDust;
+}
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
