@@ -271,6 +271,7 @@ struct YouTuber
     float moneyAmountPerVideo = 10;
     int videoNum = 1;
     float moneyMade = 0.0f;
+    int follower;
 
     void makeVideo(std::string videoTopic, RockBand ACDC, float timeLong = 8.0f);
     void increaseFollower(bool subNotify = true);
@@ -287,8 +288,7 @@ void YouTuber::increaseFollower(bool subNotify)
 {
     if(subNotify)
     {
-        int follower;
-        follower = (int) round(viewAmountPerVideo * 0.01);
+        follower = viewAmountPerVideo * 100 / 10000;
     }
 }
 
@@ -328,7 +328,7 @@ void SongWriter::increaseFollower(bool needToPay)
 {
     if(needToPay)
     {
-        numberOfPeopleWhoListened = (int) round(numberOfPeopleWhoListened * 0.3);
+        numberOfPeopleWhoListened = numberOfPeopleWhoListened * 3 / 10;
     }
 }
 
@@ -455,13 +455,14 @@ struct Bridge
     std::string whammyBarType = "floyd rose";
     int numberOfBodyScrewHole = 2;
     bool intonationAdjustable = true;
+    bool stringInTune = true;
 
-    void holdStringsStill(bool stringInTune = true);
+    bool holdStringsStill();
     void makePitchDive(float stringTensionInKg = 1);
     void matchTheBodyColor(SongWriter rockWriterA);
 };
 
-void Bridge::holdStringsStill(bool stringInTune)
+bool Bridge::holdStringsStill()
 {
     if(intonationAdjustable)
     {
@@ -471,6 +472,7 @@ void Bridge::holdStringsStill(bool stringInTune)
     {
         stringInTune = false;
     }
+    return stringInTune;
 }
 
 void Bridge::makePitchDive(float stringTensionInKg)
@@ -534,9 +536,10 @@ struct Pickup
     std::string magnetMaterialType = "alnico 5";
     std::string coverColor = "ivory";
     int stringNumber = 6;
+    bool toneChanged = false;
 
     void pickupStringVibration( String fifthString, bool pluckString = false);
-    bool changeTheGuitarTone(int pickupSwitchPosition = 5, bool toneChanged = false);
+    bool changeTheGuitarTone(int pickupSwitchPosition = 5);
     void matchTheBodyColor(SongWriter rockWriterA);
 };
 
@@ -548,7 +551,7 @@ void Pickup::pickupStringVibration(String fifthString, bool pluckString)
     }
 }
 
-bool Pickup::changeTheGuitarTone(int pickupSwitchPosition, bool toneChanged)
+bool Pickup::changeTheGuitarTone(int pickupSwitchPosition)
 {
     if(pickupSwitchPosition != 5)
     {
@@ -574,10 +577,11 @@ struct ElectricGuitar
     Bridge floydRose6Strings;
     String stockRoundWound090;
     Pickup stockSingleCoil;
+    bool collectDust = false;
 
     float sellMoney(float totallValue = 0, float askingPrice = 0, float buyerBudget = 0);
     void playRockMusic(SongWriter rockWriterA, std::string songName = "Hell's Bell");
-    bool usageCheck(int useTimesInRecentWeek = 0, bool collectDust = false);
+    bool usageCheck(int useTimesInRecentWeek = 0);
 };
 
 float ElectricGuitar::sellMoney(float totalValue, float askingPrice, float buyerBudget)
@@ -597,7 +601,7 @@ void ElectricGuitar::playRockMusic(SongWriter rockWriterA, std::string songName)
     }
 }
 
-bool ElectricGuitar::usageCheck(int useTimesInRecentWeek, bool collectDust)
+bool ElectricGuitar::usageCheck(int useTimesInRecentWeek)
 {
     if(useTimesInRecentWeek == 0)
     {
